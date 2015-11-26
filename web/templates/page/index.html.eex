@@ -1,0 +1,5 @@
+<div class="jumbotron">
+  <h2>Phoenix + React + Redux</h2>
+</div>
+
+<div id="root"></div>
