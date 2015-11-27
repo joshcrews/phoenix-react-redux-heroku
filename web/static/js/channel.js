@@ -13,7 +13,7 @@ export function configureChannel() {
   channel.join()
     .receive('ok', messages => console.log('catching up', messages))
     .receive('error', reason => console.log('failed join', reason))
-    .after(10000, () => console.log('Networking issue. Still waiting...'));
+    .receive("timeout", () => console.log("Networking issue. Still waiting...") )
 
   return channel;
 }
