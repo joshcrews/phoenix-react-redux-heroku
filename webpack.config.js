@@ -10,7 +10,7 @@ var plugins = [
   new ExtractTextPlugin('app.css'),
   new CopyWebpackPlugin([
       { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
-        to: 'js/phoenix_html.js' }
+        to: 'phoenix_html.js' },
     ])
 ];
 
