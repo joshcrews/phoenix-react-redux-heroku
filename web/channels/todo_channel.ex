@@ -1,15 +1,23 @@
 defmodule ReactWebpack.TodoChannel do
   use ReactWebpack.Web, :channel
 
-  def join("todos:" <> todo_id, _params, socket) do
-    {:ok, assign(socket, :todo_id, todo_id)}
+  alias ReactWebpack.TodoServer
+
+  def join("todos", _params, socket) do
+    todos = TodoServer.all()
+
+    {:ok, %{todos: todos}, socket}
   end
 
   def handle_in("new:todo", params, socket) do
+    todo = params["text"]
+
+    TodoServer.add(todo)
+
     broadcast! socket, "new:todo", %{
-      text: params["text"]
+      text: todo
     }
 
-    {:reply, :ok, socket}
+    {:noreply, socket}
   end
 end

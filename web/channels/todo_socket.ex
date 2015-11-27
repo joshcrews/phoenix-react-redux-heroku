@@ -2,7 +2,7 @@ defmodule ReactWebpack.TodoSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "todos:*", ReactWebpack.TodoChannel
+  channel "todos", ReactWebpack.TodoChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
