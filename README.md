@@ -1,16 +1,15 @@
-# ReactWebpack
+# Phoenix + React + Redux + Heroku
 
-To start your Phoenix app:
+A "fork" in one sense of 
 
-  1. Install dependencies with `mix deps.get`
-  2. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  3. Start Phoenix endpoint with `mix phoenix.server`
+https://github.com/slashdotdash/phoenix-react-redux-example
+http://10consulting.com/2015/11/18/phoenix-react-redux-example/
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+With the main change being getting it heroku ready
 
 ## Heroku deployment
+
+What I did:
 
 ```
 heroku buildpacks:set https://github.com/gjaldon/phoenix-static-buildpack
@@ -24,10 +23,8 @@ webpack -p
 mix phoenix.digest
 ```
 
-## Learn more
+You should also follow the Phoenix Guides on Heroku for the other steps, especially the part about creating a SECRET_KEY_BASE ENV variable: http://www.phoenixframework.org/docs/heroku#section-making-our-project-heroku-ready
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+## Funny business with web/static/vendor/phoenix.js
+
+There is a conflict between the babel preprocessor and the phoenix.js on phoenix 1.0.3, so I vendored a working version.  The problem with phoenix.js is fixed on it's master branch, but not released as of Nov 27 2015.
