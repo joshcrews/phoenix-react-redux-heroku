@@ -10,6 +10,20 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
+## Heroku deployment
+
+```
+heroku buildpacks:set https://github.com/gjaldon/phoenix-static-buildpack
+heroku buildpacks:add --index 1 https://github.com/HashNuke/heroku-buildpack-elixir
+```
+
+create a compile file in the project root with these contents:
+
+```
+webpack -p
+mix phoenix.digest
+```
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
