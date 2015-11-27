@@ -1,7 +1,7 @@
 defmodule ReactWebpack.Endpoint do
   use Phoenix.Endpoint, otp_app: :react_webpack
 
-  socket "/socket", ReactWebpack.UserSocket
+  socket "/ws", ReactWebpack.TodoSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

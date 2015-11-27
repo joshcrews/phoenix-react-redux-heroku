@@ -1,11 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters} from '../actions';
+import { subscribeTodos, addTodo, completeTodo, setVisibilityFilter, VisibilityFilters} from '../actions';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import Footer from '../components/Footer';
 
 class App extends Component {
+  componentDidMount() {
+    let { dispatch } = this.props;
+
+    dispatch(subscribeTodos());
+  }
+
   render() {
     // Injected by connect() call:
     const {dispatch, visibleTodos, visibilityFilter } = this.props;
@@ -26,7 +32,7 @@ class App extends Component {
             dispatch(setVisibilityFilter(nextFilter))
           } />
       </div>
-    )
+    );
   }
 }
 
@@ -55,14 +61,12 @@ function selectTodos(todos, filter) {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-
 function select(state) {
   return {
     visibleTodos: selectTodos(state.todos, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter
-  }
+  };
 }
 
 // Wrap the component to inject dispatch and state into it
-
 export default connect(select)(App);

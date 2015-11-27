@@ -1,8 +1,8 @@
-defmodule ReactWebpack.UserSocket do
+defmodule ReactWebpack.TodoSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", ReactWebpack.RoomChannel
+  channel "todos:*", ReactWebpack.TodoChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
