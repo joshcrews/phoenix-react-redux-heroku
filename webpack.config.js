@@ -9,10 +9,9 @@ var isProduction = (env === 'prod');
 var plugins = [
   new ExtractTextPlugin('app.css'),
   new CopyWebpackPlugin([
-    { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
-      to: 'js/phoenix_html.js'
-    }
-  ])
+      { from: './deps/phoenix_html/web/static/js/phoenix_html.js',
+        to: 'js/phoenix_html.js' }
+    ])
 ];
 
 // This is necessary to get the sass @import's working
@@ -21,21 +20,24 @@ var stylePathResolves = (
     'includePaths[]=' + path.resolve('./node_modules')
   );
 
-if (isProduction) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
-}
+// if (isProduction) {
+//   plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
+// }
 
 module.exports = {
-  entry: ['./web/static/js/index.js', './deps/phoenix/web/static/js/phoenix.js'],
+  entry: './web/static/js/index.js',
+
   output: {
     path: './priv/static/js',
     filename: 'app.js'
   },
+
   resolve: {
     alias: {
-      phoenix: __dirname + '/deps/phoenix/web/static/js/phoenix.js'
+      phoenix: __dirname + '/web/static/vendor/phoenix.js'
     }
   },
+
   module: {
         loaders: [
             {
@@ -56,5 +58,6 @@ module.exports = {
 
         ]
   },
+
   plugins: plugins
 };
