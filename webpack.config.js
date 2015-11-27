@@ -26,7 +26,7 @@ if (isProduction) {
 }
 
 module.exports = {
-  entry: './web/static/js/index.js',
+  entry: ['./web/static/js/index.js', './deps/phoenix/web/static/js/phoenix.js'],
   output: {
     path: './priv/static/js',
     filename: 'app.js'
